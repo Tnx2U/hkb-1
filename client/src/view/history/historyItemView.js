@@ -1,16 +1,17 @@
-export default class HistoryItem {
+export default class HistoryItemView {
   constructor(parentDom, data) {
     this.parentDom = parentDom;
-    (this.data = data), this.render();
+    this.data = data;
+    this.render();
   }
 
   render() {
     this.parentDom.insertAdjacentHTML(
       'beforeend',
       `
-            <div class='hisoryitem' id='historyitem_${data.id}'>
+            <div class='hisoryitem' id='historyitem_${this.data}'>
                 <div>
-                    ${data}
+                    ${this.data}
                 </div>
             </div>
         `
