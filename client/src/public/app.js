@@ -7,6 +7,7 @@ function render() {
   const contentWrapperDom = document.querySelector('.contentWrapper');
 
   new headerView(headerWrapperDom);
+  new NavigationView(naviWrapperDom);
 }
 
 function initialize() {
