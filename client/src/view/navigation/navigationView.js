@@ -9,17 +9,17 @@ export default class NavigationView {
   getNavigationHtmlSrc() {
     return `
           <div class=${this.rootClassName}>
-              <div class='monthTab'>
-                  <button class='monthLeftBtn'>◁</button>
+              <div class='month-tab'>
+                  <a class='month-btn-left'>◁</a>
                   <div>${this.dummyData.month}월</div>
-                  <button class='monthRightBtn'>▷</button>
+                  <a class='month-btn-right'>▷</a>
               </div>
-              <div class='contentTab'>
-                <button class='contentHistoryBtn' id='selected'>내역</button>
-                <div>|</div>
-                <button class='contentCalenderBtn'>달력</button>
-                <div>|</div>
-                <button class='contentGraphBtn'>통계</button>
+              <div class='content-tab'>
+                <a class='content-btn-history selected'>내역</a>
+                <span class='content-separater'>|</span>
+                <a class='content-btn-calender'>달력</a>
+                <span class='content-separater'>|</span>
+                <a class='content-btn-graph'>통계</a>
               </div>
           </div>
         `;
