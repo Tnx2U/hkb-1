@@ -1,6 +1,7 @@
 export default class HistoryInputView {
   constructor(parentDom) {
     this.parentDom = parentDom;
+    this.dummyData = { currentDate: '2020-06-16', historyType: 'income-category' };
     this.rootClassName = 'historyInput';
     this.render();
   }
@@ -8,6 +9,50 @@ export default class HistoryInputView {
   getHistoryInputHtmlSrc() {
     return `
           <div class=${this.rootClassName}>
+            <form action="">
+            <div class="input-row1">
+                <div class="input-type-div">
+                <span>분류</span><input type="button" value="수입" /><input type="button" value="지출" />
+                </div>
+            </div>
+            <div class="input-row2">
+                <div class="input-date"><span>날짜</span><input type="date" value="${this.dummyData.currentDate}" /></div>
+                <div class="input-category">
+                <span>카테고리</span>
+                <input list="${this.dummyData.historyType}" />
+                <datalist id="income-category">
+                    <option selected>선택하세요</option>
+                    <option value="월급">월급</option>
+                    <option value="용돈">용돈</option>
+                    <option value="기타수입">기타수입</option>
+                </datalist>
+            
+                <datalist id="expend-category">
+                    <option selected>선택하세요</option>
+                    <option value="식비">식비</option>
+                    <option value="생활">생활</option>
+                    <option value="쇼핑/뷰티">쇼핑/뷰티</option>
+                    <option value="교통">교통</option>
+                    <option value="의료/건강">의료/건강</option>
+                    <option value="문화/여가">문화/여가</option>
+                    <option value="미분류">미분류</option>
+                </datalist>
+                </div>
+                <div class="input-payment">
+                <span>결제수단</span><input list="payment" />
+                <datalist id="payment">
+                    <option selected>선택하세요</option>
+                </datalist>
+                </div>
+            </div>
+            <div class="input-row3">
+                <div class="input-charge"><span>금액</span><input type="text" /></div>
+                <div class="input-description"><span>내용</span><input type="text" /></div>
+            </div>
+            <div class="input-row4">
+                <input type="button" value='확인'/>
+            </div>
+            </form>
           </div>
         `;
   }

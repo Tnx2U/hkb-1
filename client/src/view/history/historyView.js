@@ -10,7 +10,7 @@ export default class HistoryView {
 
   getHistoryHtmlSrc() {
     return `
-        <div class='history'>
+        <div class='${this.rootClassName}'>
             <div class='historyInputWrapper'></div>
             <div class='historyListWrapper'></div>
         </div>

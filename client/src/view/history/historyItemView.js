@@ -9,12 +9,12 @@ export default class HistoryItemView {
     this.parentDom.insertAdjacentHTML(
       'beforeend',
       `
-            <div class='hisoryitem' id='historyitem_${this.data}'>
-                <div>
-                    ${this.data}
-                </div>
+        <div class='hisoryitem' id='historyitem_${this.data}'>
+            <div>
+                ${this.data}
             </div>
-        `
+        </div>
+      `
     );
   }
 }
