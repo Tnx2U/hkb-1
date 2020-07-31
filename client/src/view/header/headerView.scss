@@ -1,0 +1,29 @@
+@import '../../public/variables.scss';
+@import '../../public/mixins.scss';
+
+.header {
+  @include flexRow;
+  justify-content: space-between;
+  align-items: flex-end;
+  background-color: $primary;
+  * {
+    color: white;
+    flex: 1;
+  }
+}
+.titleDiv {
+  text-align: center;
+  font-size: $xlarge;
+  margin: 0.5em;
+}
+
+.paymentBtn {
+  text-align: right;
+}
+.btn_open_payment {
+  font-size: $mid;
+  font-weight: 300;
+  margin: 0.5em;
+  background: none;
+  border: none;
+}

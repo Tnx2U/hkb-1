@@ -4,6 +4,7 @@
   "description": "khb-1 client",
   "main": "index.js",
   "scripts": {
+    "start2": "nodemon ./src/public/index.html",
     "start": "webpack-dev-server --open",
     "build": "webpack"
   },
