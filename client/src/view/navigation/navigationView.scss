@@ -1,0 +1,53 @@
+@import '../../public/variables.scss';
+@import '../../public/mixins.scss';
+
+.navigation {
+  @include flexColumn;
+  @include perfectCenter;
+  & > * {
+    margin-top: 20px;
+  }
+}
+
+.month {
+  &-tab {
+    & > * {
+      font-size: $large;
+      padding: 0 0.3em;
+    }
+    @include flexRow;
+    @include perfectCenter;
+  }
+}
+.content {
+  &-tab {
+    font-size: $mid;
+    @include flexRow;
+    @include perfectCenter;
+    background-color: #e7eaee;
+    border-radius: 1em;
+    & > :not(.content-separater) {
+      width: 10em;
+      padding: 0.2em 0;
+      margin: 0.3em;
+      border-radius: 1em;
+      text-align: center;
+    }
+  }
+  &-btn {
+    &-history {
+    }
+    &-calender {
+    }
+    &-graph {
+    }
+  }
+  &-separater {
+    color: #8e8f90;
+    font-size: 1.4em;
+  }
+}
+
+.selected {
+  background-color: white;
+}
