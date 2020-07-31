@@ -8,6 +8,7 @@ export default class HeaderView {
   getHeadHtmlSrc() {
     return `
         <div class=${this.rootClassName}>
+            <div></div>
             <div class='titleDiv'>
                 <span>가계부</span>
             </div>
