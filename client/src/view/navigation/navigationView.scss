@@ -1,9 +1,6 @@
-@import '../../public/variables.scss';
-@import '../../public/mixins.scss';
-
 .navigation {
-  @include flexColumn;
-  @include perfectCenter;
+  @include flex-column;
+  @include perfect-center;
   & > * {
     margin-top: 20px;
   }
@@ -11,19 +8,19 @@
 
 .month {
   &-tab {
-    & > * {
+    * {
       font-size: $large;
       padding: 0 0.3em;
     }
-    @include flexRow;
-    @include perfectCenter;
+    @include flex-row;
+    @include perfect-center;
   }
 }
 .content {
   &-tab {
     font-size: $mid;
-    @include flexRow;
-    @include perfectCenter;
+    @include flex-row;
+    @include perfect-center;
     background-color: #e7eaee;
     border-radius: 1em;
     & > :not(.content-separater) {
