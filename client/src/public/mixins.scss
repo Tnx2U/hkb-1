@@ -1,14 +1,39 @@
-@mixin flexRow {
+@mixin flex-row {
   display: flex;
   flex-direction: row;
 }
 
-@mixin flexColumn {
+@mixin flex-column {
   display: flex;
   flex-direction: column;
 }
 
-@mixin perfectCenter {
+@mixin perfect-center {
   justify-content: center;
   align-items: center;
+}
+
+@mixin click-background-effect($color) {
+  &:hover {
+    background-color: darken($color, 10);
+  }
+  &:active {
+    background-color: darken($color, 20);
+  }
+}
+@mixin prefix-positive {
+  &::before {
+    content: '+';
+  }
+}
+@mixin prefix-negative {
+  &::before {
+    content: '-';
+  }
+}
+
+@mixin postfix-KRW {
+  &::after {
+    content: '원';
+  }
 }
