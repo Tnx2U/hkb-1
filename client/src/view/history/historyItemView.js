@@ -11,13 +11,17 @@ export default class HistoryItemView {
   getHistoryItemHtmlSrc() {
     return `
       <div class=${this.rootClassName}>
-        <div class='items-header-div'>
-          <div class='date-div'>${this.data.date}</div>
-          <div class='day-div'>${this.data.day}</div>
-          <div class='allincome-div'>${this.data.allIncome}</div>
-          <div class='allexpend-div'>${this.data.allExpend}</div>
+        <div class='history-item-header'>
+          <div class='history-item-section'>
+            <div class='history-item-date'>${this.data.date}</div>
+            <div class='history-item-day'>${this.data.day}</div>
+          </div>
+          <div class='history-item-section'>
+            <div class='history-item-income-total'>${this.data.allIncome}</div>
+            <div class='history-item-expend-total'>${this.data.allExpend}</div>
+          </div>
         </div>
-        <div class='transaction-list'>
+        <div class='history-item-container'>
         </div>
       </div>
     `;
@@ -28,7 +32,7 @@ export default class HistoryItemView {
   }
 
   renderHistoryTransaction() {
-    const transactionDom = this.parentDom.querySelector('.transaction-list');
+    const transactionDom = this.parentDom.querySelector('.history-item-container');
     this.data.transactions.forEach((transaction, index) => {
       new HistoryTransactionView(transactionDom, transaction, index);
     });
