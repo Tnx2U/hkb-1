@@ -1,0 +1,44 @@
+.historyInput {
+  margin: 20px;
+  border-radius: 10px;
+  * {
+    font-size: $small;
+  }
+}
+
+.input {
+  &-row {
+    @include flex-row;
+    align-items: center;
+    margin-top: 10px;
+  }
+  &-label {
+    margin-left: 1em;
+  }
+  &-btn {
+    &-type {
+      color: white;
+      background-color: $primary;
+      @include click-background-effect($primary);
+      font-size: $xsmall;
+      box-sizing: border-box;
+      margin-left: 1em;
+      padding: 0.2em 2em;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+    }
+    &-confirm {
+      width: 100%;
+      text-align: center;
+      color: white;
+      padding: 8px 0;
+      background-color: $primary;
+      @include click-background-effect($primary);
+      border: none;
+      outline: none;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+}

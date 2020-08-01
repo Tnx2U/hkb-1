@@ -1,0 +1,7 @@
+.history {
+  @include flex-column;
+  @include perfect-center;
+}
+.historyListWrapper {
+  width: 100%;
+}
