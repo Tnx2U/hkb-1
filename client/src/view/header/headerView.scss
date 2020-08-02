@@ -1,8 +1,5 @@
-@import '../../public/variables.scss';
-@import '../../public/mixins.scss';
-
 .header {
-  @include flexRow;
+  @include flex-row;
   justify-content: space-between;
   align-items: flex-end;
   background-color: $primary;

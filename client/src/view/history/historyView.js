@@ -5,6 +5,7 @@ export default class HistoryView {
   constructor(parentDom) {
     this.parentDom = parentDom;
     this.rootClassName = 'history';
+
     this.render();
   }
 

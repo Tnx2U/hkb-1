@@ -1,3 +1,11 @@
 @import './reset.css';
+@import './variables.scss';
+@import './mixins.scss';
 @import '../view/header/headerView.scss';
 @import '../view/navigation/navigationView.scss';
+@import '../view/history';
+
+.contentWrapper {
+  @include flex-column;
+  @include perfect-center;
+}
