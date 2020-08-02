@@ -11,25 +11,25 @@ export default class HistoryTransactionView {
     this.parentDom = parentDom;
     this.data = data;
     this.index = index;
-    this.rootClassName = `transaction_` + index;
+    this.rootClassName = `transaction-container transaction_` + index;
     this.render();
   }
 
   getTransactionHtmlSrc() {
     return `
             <div class=${this.rootClassName}>
-                <div class='trans-category-div'>
+                <span class='transaction-category'>
                     ${this.data.category}
-                </div>
-                <div class='trans-description-div'>
+                </span>
+                <span class='transaction-description'>
                     ${this.data.description}
-                </div>
-                <div class='trans-payment-div'>
+                </span>
+                <span class='transaction-payment'>
                     ${this.data.payment}
-                </div>
-                <div class='trans-charge-div'>
+                </span>
+                <span class='transaction-charge'>
                     ${this.data.charge}
-                </div>
+                </span>
             </div>
         `;
   }

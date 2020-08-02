@@ -1,0 +1,41 @@
+.historyItem {
+  margin-top: 5px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  border-top: 1px solid black;
+}
+
+.history-item {
+  &-header {
+    @include flex-row;
+    justify-content: space-between;
+    font-size: $small;
+  }
+  &-section {
+    @include flex-row;
+  }
+  &-date {
+    font-weight: 600;
+    margin-right: 0.5em;
+  }
+  &-day {
+    font-weight: 400;
+    color: #808080;
+  }
+  &-income-total {
+    @include prefix-positive;
+    @include postfix-KRW;
+    color: $income;
+  }
+  &-expend-total {
+    @include prefix-negative;
+    @include postfix-KRW;
+    color: $expend;
+    margin-left: 0.5em;
+  }
+  &-container {
+    @include flex-column;
+  }
+}

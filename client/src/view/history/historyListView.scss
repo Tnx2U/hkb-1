@@ -1,0 +1,7 @@
+.historyList {
+  @include flex-column;
+  align-items: center;
+}
+.historyItemWrapper {
+  width: 100%;
+}

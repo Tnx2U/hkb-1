@@ -1,0 +1,36 @@
+.transaction {
+  &-container {
+    @include flex-row;
+    padding-top: 6px;
+    margin-top: 6px;
+    border-top: 1px solid #cccccc;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &-category {
+    min-width: 6em;
+    text-align: center;
+    box-sizing: border-box;
+    color: white;
+    font-weight: 600;
+    background-color: $expend;
+    padding: 0.6em;
+    border-radius: 25px;
+  }
+  &-description {
+    flex: 6;
+    box-sizing: border-box;
+    padding-left: 0.5em;
+  }
+  &-payment {
+    flex: 2;
+    text-align: center;
+  }
+  &-charge {
+    flex: 2;
+    @include prefix-negative;
+    @include postfix-KRW;
+    text-align: right;
+    color: $expend;
+  }
+}
