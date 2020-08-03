@@ -4,19 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var transactionHistoryRouter = require('./routes/transactionHistory');
+var indexRouter = require('./routes/index.js');
+var transactionHistoryRouter = require('./routes/transactionHistory.js');
 
 var app = express();
-// app.set("view engine", "");.
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', indexRouter);
 app.use('/transactionHistory', transactionHistoryRouter);
+app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
