@@ -138,13 +138,10 @@ export default class HistoryListView {
 
   renderHistoryItem() {
     const itemWrapperDom = this.parentDom.querySelector('.historyItemWrapper');
-    this.dummyData.items.forEach((item) => {
-      new HistoryItemView(itemWrapperDom, item);
+    this.dummyData.items.forEach((item, index) => {
+      itemWrapperDom.insertAdjacentHTML('beforeend', `<div class='historyItem' id='item_${index}'></div>`);
+      const historyItemDom = itemWrapperDom.querySelector(`#item_${index}`);
+      new HistoryItemView(historyItemDom, item, index);
     });
   }
-
-  // update() {
-  //   this.remove();
-  //   this.renderItem();
-  // }
 }
