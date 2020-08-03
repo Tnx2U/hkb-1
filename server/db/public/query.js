@@ -12,4 +12,22 @@ const getTransactionByMonth = function (params) {
   return getTransactionByMonthQueryC;
 };
 
-export { getTransactionByMonth };
+const postTransaction = function (params) {
+  let postTransactionQuery = `
+    insert into hkb.TransactionHistory (payment_id , user_id , transaction_type , transaction_date , category , charge , description)
+    values (? ,? ,? ,? ,? ,?, ?);
+  `;
+
+  const postTransactionQueryC = mysql.format(postTransactionQuery, [
+    params.paymentId,
+    params.userId,
+    params.transactionType,
+    params.transationDate,
+    params.category,
+    params.charge,
+    params.description,
+  ]);
+  return postTransactionQueryC;
+};
+
+export { getTransactionByMonth, postTransaction };

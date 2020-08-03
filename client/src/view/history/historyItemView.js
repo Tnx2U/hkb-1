@@ -42,26 +42,3 @@ export default class HistoryItemView {
     this.renderHistoryTransaction();
   }
 }
-
-// {
-//   date: '2020-06-16',
-//   day: '화',
-//   allIncome: 0,
-//   allExpend: 26000,
-//   transactions: [
-//     {
-//       type: '지출',
-//       category: '쇼핑/뷰티',
-//       description: '미용실',
-//       payment: '현대카드',
-//       charge: 20000,
-//     },
-//     {
-//       type: '지출',
-//       category: '식비',
-//       description: '맥도날드',
-//       payment: '카카오체크카드',
-//       charge: 6000,
-//     },
-//   ],
-// },

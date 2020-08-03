@@ -1,8 +1,7 @@
 import excute from './public/excute.js';
-import { getTransactionByMonth } from './public/query.js';
+import { getTransactionByMonth, postTransaction } from './public/query.js';
 
 function queryGetTransactionByMonth(params) {
-  console.log('access getbymonth db');
   const transactionData = excute(getTransactionByMonth(params)).catch((error) => {
     console.log(error);
     throw error;
@@ -10,4 +9,12 @@ function queryGetTransactionByMonth(params) {
   return transactionData;
 }
 
-export { queryGetTransactionByMonth };
+function queryPostTransaction(params) {
+  const queryResult = excute(postTransaction(params)).catch((error) => {
+    console.log(error);
+    throw error;
+  });
+  return queryResult;
+}
+
+export { queryGetTransactionByMonth, queryPostTransaction };
