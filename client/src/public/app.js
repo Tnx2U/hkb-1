@@ -27,5 +27,6 @@ function initialize() {
 
 initialize();
 onload = () => {
-  router.to('history');
+  console.log('hi');
+  // router.to('history');
 };
