@@ -1,9 +1,19 @@
+import router from '../../router';
+import Calendar from '../calendar';
+import Graph from '../graph';
 export default class NavigationView {
   constructor(parentDom) {
     this.parentDom = parentDom;
     this.rootClassName = 'navigation';
     this.dummyData = { month: '6' };
     this.render();
+    const history = document.createElement('h1');
+    history.innerText = 'history';
+    router.routes = [
+      { path: 'history', component: history },
+      { path: 'calendar', component: new Calendar() },
+      { path: 'graph', component: new Graph() },
+    ];
   }
 
   getNavigationHtmlSrc() {
@@ -17,7 +27,7 @@ export default class NavigationView {
               <div class='content-tab'>
                 <a class='content-btn-history selected'>내역</a>
                 <span class='content-separater'>|</span>
-                <a class='content-btn-calender'>달력</a>
+                <a class='content-btn-calendar'>달력</a>
                 <span class='content-separater'>|</span>
                 <a class='content-btn-graph'>통계</a>
               </div>
@@ -27,5 +37,14 @@ export default class NavigationView {
 
   render() {
     this.parentDom.insertAdjacentHTML('beforeend', this.getNavigationHtmlSrc());
+    document.querySelector('.content-btn-history').addEventListener('click', () => {
+      router.to('history');
+    });
+    document.querySelector('.content-btn-calendar').addEventListener('click', () => {
+      router.to('calendar');
+    });
+    document.querySelector('.content-btn-graph').addEventListener('click', () => {
+      router.to('graph');
+    });
   }
 }
