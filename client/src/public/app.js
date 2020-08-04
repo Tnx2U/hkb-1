@@ -1,6 +1,7 @@
 import headerView from '../view/header/headerView.js';
 import NavigationView from '../view/navigation/navigationView.js';
 import HistoryView from '../view/history/historyView.js';
+import CalendarView from '../view/calendar/calendarView.js';
 
 function render() {
   const headerWrapperDom = document.querySelector('.headerWrapper');
@@ -9,7 +10,8 @@ function render() {
 
   new headerView(headerWrapperDom);
   new NavigationView(naviWrapperDom);
-  new HistoryView(contentWrapperDom);
+  // new HistoryView(contentWrapperDom);
+  new CalendarView(contentWrapperDom);
 }
 
 function initialize() {
