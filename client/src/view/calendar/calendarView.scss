@@ -1,0 +1,23 @@
+.calendar {
+  display: grid;
+  width: 800px;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 50px;
+
+  //   grid-template-columns: 30px 100px 100px 100px 100px;
+  grid-auto-rows: 80px;
+  margin: 50px;
+}
+
+.calendar-day-div {
+  text-align: center;
+  margin: 0.5px;
+  margin: auto;
+}
+
+.calendar-date-div {
+  border: 2px solid orange;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 0.5px;
+}

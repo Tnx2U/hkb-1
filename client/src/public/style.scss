@@ -4,6 +4,7 @@
 @import '../view/header/headerView.scss';
 @import '../view/navigation/navigationView.scss';
 @import '../view/history';
+@import '../view//calendar/calendarView.scss';
 
 .contentWrapper {
   @include flex-column;

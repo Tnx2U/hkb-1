@@ -1,9 +1,8 @@
 import headerView from '../view/header/headerView.js';
 import NavigationView from '../view/navigation/navigationView.js';
 import HistoryView from '../view/history/historyView.js';
+import CalendarView from '../view/calendar/calendarView.js';
 import RouterView from '../routerView';
-import Calendar from '../view/calendar';
-import Graph from '../view/graph';
 import router from '../router';
 
 function render() {
@@ -19,12 +18,10 @@ function render() {
 function initialize() {
   const contentWrapperDom = document.querySelector('.contentWrapper');
   customElements.define('router-view', RouterView);
-  customElements.define('my-cal', Calendar);
-  customElements.define('my-gr', Graph);
   router.routes = [
     { path: 'history', component: new HistoryView(contentWrapperDom) },
-    { path: 'calendar', component: new Calendar() },
-    { path: 'graph', component: new Graph() },
+    { path: 'calendar', component: new CalendarView(contentWrapperDom) },
+    { path: 'graph', component: new CalendarView(contentWrapperDom) },
   ];
   render();
   if (location.pathname !== 'calendar' && location.pathname !== 'graph') router.to('history');

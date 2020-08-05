@@ -1,16 +1,16 @@
 import HistoryTransactionView from './historyTransactionView.js';
 
 export default class HistoryItemView {
-  constructor(parentDom, data) {
+  constructor(parentDom, data, index) {
     this.parentDom = parentDom;
     this.rootClassName = 'historyItem';
+    this.rootIdName = `#item_${index}`;
     this.data = data;
     this.render();
   }
 
   getHistoryItemHtmlSrc() {
     return `
-      <div class=${this.rootClassName}>
         <div class='history-item-header'>
           <div class='history-item-section'>
             <div class='history-item-date'>${this.data.date}</div>
@@ -23,7 +23,6 @@ export default class HistoryItemView {
         </div>
         <div class='history-item-container'>
         </div>
-      </div>
     `;
   }
 
