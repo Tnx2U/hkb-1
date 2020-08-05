@@ -10,7 +10,7 @@ import {
 /* 월별 거래기록을 날짜별로 그룹화하여 조회하는 api 라우터 */
 router.get('/:month/organize', async function (req, res, next) {
   try {
-    const transactionData = await getOrganizeTransactionByMonth(req.body);
+    const transactionData = await getOrganizeTransactionByMonth(req.query);
     res.status(200).send({ success: true, data: transactionData });
   } catch (error) {
     console.log(error.message);
@@ -21,7 +21,7 @@ router.get('/:month/organize', async function (req, res, next) {
 /* 월별 거래기록을 조회하는 api 라우터 */
 router.get('/:month', async function (req, res, next) {
   try {
-    const transactionData = await getTransactionByMonth(req.body);
+    const transactionData = await getTransactionByMonth(req.query);
     res.status(200).send({ success: true, data: transactionData });
   } catch (error) {
     console.log(error.message);

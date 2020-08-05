@@ -8,11 +8,13 @@ var indexRouter = require('./routes/index.js');
 var transactionHistoryRouter = require('./routes/transactionHistory.js');
 
 var app = express();
+const cors = require('cors');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 
 app.use('/transactionHistory', transactionHistoryRouter);
 app.use('/', indexRouter);
