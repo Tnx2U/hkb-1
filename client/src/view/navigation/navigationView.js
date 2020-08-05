@@ -9,11 +9,6 @@ export default class NavigationView {
     this.render();
     const history = document.createElement('h1');
     history.innerText = 'history';
-    router.routes = [
-      { path: 'history', component: history },
-      { path: 'calendar', component: new Calendar() },
-      { path: 'graph', component: new Graph() },
-    ];
   }
 
   getNavigationHtmlSrc() {
