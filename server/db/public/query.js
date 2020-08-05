@@ -2,7 +2,7 @@ import mysql from 'mysql2';
 
 const getTransactionByMonth = function (params) {
   let getTransactionByMonthQuery = `
-        SELECT th.transaction_type, th.transaction_date, th.category, p.name as payment,th.charge, th.description
+        SELECT th.id, th.transaction_type, th.transaction_date, th.category, p.name as payment,th.charge, th.description
         from TransactionHistory th , payment p 
         where DATE_FORMAT(th.transaction_date, '%m') = ? and p.id = th.payment_id
         order by th.transaction_date DESC;
@@ -30,4 +30,22 @@ const postTransaction = function (params) {
   return postTransactionQueryC;
 };
 
-export { getTransactionByMonth, postTransaction };
+const putTransaction = function (params) {
+  let putTransactionQuery = `
+  update hkb.TransactionHistory set payment_id = ?, transaction_type = ?, transaction_date = ?, category = ?, charge = ?, description = ?
+  where id = ?;
+`;
+
+  const putTransactionQueryC = mysql.format(putTransactionQuery, [
+    params.paymentId,
+    params.transactionType,
+    params.transationDate,
+    params.category,
+    params.charge,
+    params.description,
+    params.id,
+  ]);
+  return putTransactionQueryC;
+};
+
+export { getTransactionByMonth, postTransaction, putTransaction };
