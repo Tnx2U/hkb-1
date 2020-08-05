@@ -1,5 +1,4 @@
 class Router {
-  #baseURL;
   #routes;
   constructor(routes = []) {
     this.#routes = new Map();
@@ -21,10 +20,6 @@ class Router {
     });
   }
 
-  set baseURL(baseURL) {
-    this.#baseURL = baseURL;
-  }
-
   to(path) {
     console.log('to', path);
     if (!this.#routes.has(path)) return;
@@ -34,6 +29,3 @@ class Router {
 }
 
 export default new Router();
-
-const router = new Router();
-router.routes = [];
