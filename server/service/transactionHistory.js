@@ -2,8 +2,6 @@ import { queryGetTransactionByMonth, queryPostTransaction, queryPutTransaction }
 
 async function getOrganizeTransactionByMonth(params) {
   const queryResult = await queryGetTransactionByMonth(params);
-
-  console.log('queryResult : ', queryResult);
   if (queryResult.length == 0) return queryResult;
 
   let organizedTransactions = {
