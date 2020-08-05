@@ -5,7 +5,6 @@ export default class HistoryView {
   constructor(parentDom) {
     this.parentDom = parentDom;
     this.rootClassName = 'history';
-
     this.render();
   }
 
@@ -18,7 +17,12 @@ export default class HistoryView {
     `;
   }
 
+  clear() {
+    this.parentDom.innerHTML = '';
+  }
+
   render() {
+    this.clear();
     this.renderHistory();
     this.renderHistoryInput();
     this.renderHistoryList();
