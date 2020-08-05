@@ -49,7 +49,7 @@ npm start
 - ![title](https://img.shields.io/badge/-Passport-45B6F2?&logo=LogMein&logoColor=white)
 
 **배포**
-- ![title](https://img.shields.io/badge/-EC2-#232F3E?&logo=Amazon-AWS&logoColor=white)
+- ![title](https://img.shields.io/badge/-EC2-232F3E?&logo=Amazon-AWS&logoColor=white)
 
 
 # 🐱 디렉토리 구조
