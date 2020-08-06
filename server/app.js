@@ -1,14 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
 
-var indexRouter = require('./routes/index.js');
-var transactionHistoryRouter = require('./routes/transactionHistory.js');
+import indexRouter from './routes/index.js';
+import transactionHistoryRouter from './routes/transactionHistory.js';
+import cors from 'cors';
 
 var app = express();
-const cors = require('cors');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -35,4 +35,4 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;

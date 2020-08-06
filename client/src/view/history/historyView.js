@@ -8,7 +8,11 @@ export default class HistoryView {
     this.render();
   }
 
-  getHistoryHtmlSrc() {
+  set transaction(transaction) {
+    this.transactionData = transaction;
+  }
+
+  getTemplate() {
     return `
         <div class='${this.rootClassName}'>
             <div class='historyInputWrapper'></div>
@@ -17,23 +21,14 @@ export default class HistoryView {
     `;
   }
 
-  clear() {
-    this.parentDom.innerHTML = '';
-  }
-
   render() {
-    this.clear();
-    this.renderHistory();
+    this.mount();
     this.renderHistoryInput();
-    this.renderHistoryList();
+    if (this.transactionData) this.renderHistoryList();
   }
 
-  update() {
-    //to-do : input과 list만 다시 렌더할건지 혹은 렌더함수자체에 미리 기존에 있던걸 삭제하는 로직을 넣을건지 선택
-  }
-
-  renderHistory() {
-    this.parentDom.insertAdjacentHTML('beforeend', this.getHistoryHtmlSrc());
+  mount() {
+    this.parentDom.insertAdjacentHTML('beforeend', this.getTemplate());
   }
 
   renderHistoryInput() {
@@ -43,6 +38,6 @@ export default class HistoryView {
 
   renderHistoryList() {
     const historyListWrapperDom = this.parentDom.querySelector('.historyListWrapper');
-    new HistoryListView(historyListWrapperDom);
+    new HistoryListView(historyListWrapperDom, this.transactionData);
   }
 }
