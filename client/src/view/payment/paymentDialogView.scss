@@ -1,0 +1,89 @@
+.payment {
+  &-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+    @include flex-column;
+    @include perfect-center;
+    &[status='show'] {
+      display: '';
+    }
+    &[status='hide'] {
+      display: none;
+    }
+  }
+  &-container {
+    border-radius: 5px;
+    background-color: white;
+    width: 650px;
+    max-height: 750px;
+    box-shadow: 2px 3px 20px 5px rgba(50, 50, 50, 0.5);
+    margin-bottom: 300px;
+  }
+  &-header {
+    @include flex-row;
+    @include perfect-center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: $primary;
+    * {
+      font-size: $large;
+      flex: 1;
+    }
+    &-title {
+      color: white;
+      padding: 1em;
+      text-align: center;
+      flex: 3;
+    }
+    &-close {
+      color: white;
+      align-self: flex-start;
+      text-align: right;
+      padding: 5px 8px;
+    }
+  }
+  &-content {
+    @include flex-column;
+    align-items: center;
+  }
+  &-registration {
+    &-container {
+      @include flex-row;
+      justify-content: center;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 20px;
+      border-bottom: 1px solid gray;
+    }
+    &-label {
+      font-size: $small;
+      align-self: flex-end;
+      padding-bottom: 4px;
+    }
+    &-input {
+      border: none;
+      font-size: $mid;
+      border-bottom: 1px solid black;
+      text-align: center;
+      width: 360px;
+      margin: 0 12px;
+    }
+    &-submit {
+      color: white;
+      font-size: $small;
+      background-color: $primary;
+      border: none;
+      min-width: 5em;
+      text-align: center;
+      box-sizing: border-box;
+      font-weight: 600;
+      padding: 0.5em;
+      border-radius: 22px;
+    }
+  }
+}

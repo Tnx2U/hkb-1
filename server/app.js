@@ -6,6 +6,7 @@ import logger from 'morgan';
 
 import indexRouter from './routes/index.js';
 import transactionHistoryRouter from './routes/transactionHistory.js';
+import paymentRouter from './routes/payment.js';
 import cors from 'cors';
 
 var app = express();
@@ -17,6 +18,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use('/transactionHistory', transactionHistoryRouter);
+app.use('/payment', paymentRouter);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
