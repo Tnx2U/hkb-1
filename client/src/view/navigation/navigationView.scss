@@ -15,6 +15,9 @@
     @include flex-row;
     @include perfect-center;
   }
+  &-text::after {
+    content: '월';
+  }
 }
 .content {
   &-tab {

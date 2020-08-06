@@ -5,8 +5,4 @@
 @import '../view/navigation/navigationView.scss';
 @import '../view/history';
 @import '../view//calendar/calendarView.scss';
-
-.contentWrapper {
-  @include flex-column;
-  @include perfect-center;
-}
+@import '../view/pages/HKBPage.scss';
