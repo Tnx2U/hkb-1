@@ -3,21 +3,24 @@
   justify-content: space-between;
   align-items: flex-end;
   background-color: $primary;
-  * {
-    color: white;
-    flex: 1;
-  }
+}
+.pad {
+  flex: 1;
 }
 .titleDiv {
+  flex: 1;
+  color: white;
   text-align: center;
   font-size: $xlarge;
   margin: 0.5em;
 }
 
 .paymentBtn {
+  flex: 1;
   text-align: right;
 }
 .btn_open_payment {
+  color: white;
   font-size: $mid;
   font-weight: 300;
   margin: 0.5em;
