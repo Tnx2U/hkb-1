@@ -1,5 +1,5 @@
 import utils from '../../utils';
-const chart = ` <svg class="chart" viewBox="0 0 400 400"></svg> `;
+const chart = `<svg class="chart" viewBox="0 0 400 400"></svg> `;
 
 export default class ChartView {
   constructor(parentDom) {
@@ -20,6 +20,7 @@ export default class ChartView {
     this.clear();
     this.parentDom.insertAdjacentHTML('beforeend', chart);
     const chartEl = document.querySelector('.chart');
+    console.log('acccess in chart compo render : ', chartEl);
     const arr = [
       { category: '쇼핑', charge: 2000 },
       { category: '카트', charge: 4000 },
@@ -48,7 +49,7 @@ export default class ChartView {
       chartEl.appendChild(circle);
       const deg2 = deg;
       const tmp2 = tmp;
-      addEventListener('load', () => {
+      setTimeout(() => {
         chartEl.style.transform = 'rotate(360deg)';
         circle.style.transform = `rotate(${deg2}deg)`;
         circle.setAttribute('stroke-dasharray', `${tmp2},1000`);

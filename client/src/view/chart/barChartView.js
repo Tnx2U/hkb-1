@@ -10,6 +10,10 @@ export default class BarChartView {
     this.month = 6;
     this.setDummyData();
     this.orderData = this.setOrderData(this.dummyData);
+    this.render();
+  }
+
+  render() {
     this.mount();
     this.renderElement();
   }
