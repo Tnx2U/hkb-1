@@ -48,6 +48,7 @@ export default class HKBPage {
     this.transactionModel.subscribe((transaction) => {
       historyView.transaction = transaction;
       calendarView.transaction = transaction;
+      chartView.transaction = transaction;
       this.renderContent();
     });
 

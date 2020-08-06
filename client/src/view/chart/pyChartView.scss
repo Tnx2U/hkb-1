@@ -22,3 +22,20 @@ circle {
 .chart-hover {
   transform: scale(2);
 }
+
+.chart-total-expend {
+  margin: 10px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.chart-expend-explain {
+  color: #808080;
+  font-size: 20px;
+}
+
+.chart-expend-value {
+  color: darkviolet;
+  font-size: 20px;
+}

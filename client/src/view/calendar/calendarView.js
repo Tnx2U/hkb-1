@@ -9,7 +9,6 @@ export default class CalendarView {
 
   set transaction(transaction) {
     this.transactionData = transaction;
-    console.log('transacitonData : ', this.transactionData);
     if (this.transactionData.items !== undefined) {
       const dateInfo = this.transactionData.items[0].date;
       [this.year, this.month] = dateInfo.split('-').map((date) => Number(date));
