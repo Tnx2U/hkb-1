@@ -1,67 +1,92 @@
 import utils from '../../utils';
-const chart = ` <svg class="chart" viewBox="0 0 400 400"></svg> `;
 
-export default class ChartView {
+export default class BarChartView {
   constructor(parentDom) {
     this.parentDom = parentDom;
-    this.rootClassName = 'chart';
+    this.rootClassName = 'barChart';
     this.dummyData = null;
+    this.orderData = null;
     this.year = 2020;
-    this.month = 8;
+    this.month = 6;
     this.setDummyData();
-    this.render();
+    this.orderData = this.setOrderData(this.dummyData);
+    this.mount();
+    this.renderElement();
+  }
+
+  getTemplate() {
+    return `
+      <div class=${this.rootClassName}>
+      </div>`;
+  }
+
+  getChartSvg(percet) {
+    return `<svg class='barChart' viewBox='0 0 300 50'>
+        <line x1='0' x2=${percet * 10} y1='0' y2='0' stroke='orange' stroke-width='250' />
+    </svg>`;
+  }
+
+  getBarElementHtmlSrc(categoryData) {
+    return (
+      `
+        <div class='bar-element' id='bar-element-${categoryData.category}'>
+            <div class='bar-element-category'>${categoryData.category}</div>
+            <div class='bar-element-percent'>${categoryData.percent}%</div>
+            <div class='bar-element-chart'>
+            ` +
+      this.getChartSvg(categoryData.percent) +
+      `</div>
+            <div class='bar-element-charge'>${categoryData.charge}원</div>
+        <div>
+    `
+    );
+  }
+
+  mount() {
+    this.parentDom.insertAdjacentHTML('beforeend', this.getTemplate());
   }
 
   clear() {
     this.parentDom.innerHTML = '';
   }
 
-  render() {
-    this.clear();
-    this.parentDom.insertAdjacentHTML('beforeend', chart);
-    const chartEl = document.querySelector('.chart');
-    const arr = [
-      { category: '쇼핑', charge: 2000 },
-      { category: '카트', charge: 4000 },
-      { category: '식비', charge: 6000 },
-      { category: '방탈출', charge: 8000 },
-      { category: '데이트', charge: 10000 },
-    ];
-    let total = 0;
-    arr.forEach(({ charge }) => (total += charge));
-    const max = 502.5;
-    let deg = -90;
-    arr.forEach(({ category, charge }) => {
-      const tmp = (charge / total) * max;
-      const circle = utils.createSVGElement({
-        tag: 'circle',
-        attrs: {
-          cx: '200',
-          cy: '200',
-          r: '80',
-          stroke: `#${utils.getRandomHex(0x111111, 0xdddddd)}`,
-          'stroke-width': '160',
-          'stroke-dasharray': '0,1000',
-        },
-        styles: { transform: 'rotate(-90deg)' },
-      });
-      chartEl.appendChild(circle);
-      const deg2 = deg;
-      const tmp2 = tmp;
-      addEventListener('load', () => {
-        chartEl.style.transform = 'rotate(360deg)';
-        circle.style.transform = `rotate(${deg2}deg)`;
-        circle.setAttribute('stroke-dasharray', `${tmp2},1000`);
-      });
-      deg += (charge / total) * 360;
-      circle.addEventListener('mouseover', () => (circle.style.transform += ' scale(1.1)'));
-      circle.addEventListener('mouseout', () => (circle.style.transform = circle.style.transform.split(' ')[0]));
+  renderElement() {
+    const rootDom = this.parentDom.querySelector(`.${this.rootClassName}`);
+    this.orderData.forEach((element) => {
+      rootDom.insertAdjacentHTML('beforeend', this.getBarElementHtmlSrc(element));
     });
+  }
+
+  setOrderData(dummyData) {
+    // 1. 2중 foreach 돌면서 dic에 카테고리별로 금액누적
+    let orderDic = {};
+    dummyData.items.forEach((item) => {
+      item.transactions.forEach((transaction) => {
+        if (transaction.type == '지출') {
+          if (orderDic[transaction.category] == undefined) {
+            orderDic[transaction.category] = transaction.charge;
+          } else {
+            orderDic[transaction.category] += transaction.charge;
+          }
+        }
+      });
+    });
+    // 2. dic을 list로 변환하고 금액에 따라 정렬
+    let orderList = [];
+    for (const [key, value] of Object.entries(orderDic)) {
+      orderList.push({ category: key, charge: value, percent: Math.round((value / dummyData.allExpend) * 100) });
+    }
+    orderList.sort(function (a, b) {
+      return b.charge - a.charge;
+    });
+
+    console.log('ordered data : ', orderList);
+    return orderList;
   }
 
   setDummyData() {
     this.dummyData = {
-      allExpend: 444790,
+      allExpend: 90700,
       allIncome: 2750000,
       items: [
         {
