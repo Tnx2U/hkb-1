@@ -2,16 +2,7 @@ class Router {
   #routes;
   constructor(routes = []) {
     this.#routes = new Map();
-    this.routes = routes;
-    window.addEventListener('popstate', (e) => {
-      if (!e.state) {
-        window.dispatchEvent(new CustomEvent('locationchange', { detail: this.#routes.values().next().value }));
-      } else {
-        const path = e.state.path;
-        if (!this.#routes.has(path)) return;
-        window.dispatchEvent(new CustomEvent('locationchange', { detail: this.#routes.get(path) }));
-      }
-    });
+    addEventListener('popstate', (e) => this.handlePopState(e));
   }
 
   set routes(routes) {
@@ -21,10 +12,19 @@ class Router {
   }
 
   to(path) {
-    console.log('to', path);
     if (!this.#routes.has(path)) return;
     history.pushState({ path }, 'tmp', `/${path}`);
-    window.dispatchEvent(new CustomEvent('locationchange', { detail: this.#routes.get(path) }));
+    dispatchEvent(new CustomEvent('locationchange', { detail: this.#routes.get(path) }));
+  }
+
+  handlePopState(e) {
+    if (!e.state) {
+      dispatchEvent(new CustomEvent('locationchange', { detail: this.#routes.values().next().value }));
+    } else {
+      const path = e.state.path;
+      if (!this.#routes.has(path)) return;
+      dispatchEvent(new CustomEvent('locationchange', { detail: this.#routes.get(path) }));
+    }
   }
 }
 
