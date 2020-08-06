@@ -1,6 +1,7 @@
 import { queryGetTransactionByMonth, queryPostTransaction, queryPutTransaction } from '../db/transactionHistory.js';
 
 async function getOrganizeTransactionByMonth(params) {
+  console.log('query params : ', params);
   const queryResult = await queryGetTransactionByMonth(params);
   if (queryResult.length == 0) return queryResult;
 

@@ -1,0 +1,4 @@
+.content-slot {
+  @include flex-column;
+  @include perfect-center;
+}

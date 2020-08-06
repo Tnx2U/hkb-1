@@ -6,8 +6,5 @@
 @import '../view/history';
 @import '../view//calendar/calendarView.scss';
 @import '../view//chart/barChartView.scss';
+@import '../view/pages/HKBPage.scss';
 
-.contentWrapper {
-  @include flex-column;
-  @include perfect-center;
-}
