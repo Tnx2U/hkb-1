@@ -2,6 +2,7 @@ import headerView from '../view/header/headerView.js';
 import NavigationView from '../view/navigation/navigationView.js';
 import HistoryView from '../view/history/historyView.js';
 import CalendarView from '../view/calendar/calendarView.js';
+import ChartView from '../view/chart/chartView';
 import RouterView from '../routerView';
 import router from '../router';
 
@@ -13,6 +14,7 @@ function render() {
   new headerView(headerWrapperDom);
   new NavigationView(naviWrapperDom);
   contentWrapperDom.appendChild(new RouterView());
+  new ChartView(naviWrapperDom);
 }
 
 function initialize() {
@@ -21,7 +23,7 @@ function initialize() {
   router.routes = [
     { path: 'history', component: new HistoryView(contentWrapperDom) },
     { path: 'calendar', component: new CalendarView(contentWrapperDom) },
-    { path: 'graph', component: new CalendarView(contentWrapperDom) },
+    { path: 'graph', component: new ChartView(contentWrapperDom) },
   ];
   render();
   if (location.pathname !== 'calendar' && location.pathname !== 'graph') router.to('history');
