@@ -21,3 +21,34 @@
   border-radius: 10px;
   margin: 0.5px;
 }
+
+.day-income {
+  margin-top: 20px;
+  height: 15px;
+  text-align: right;
+  color: blue;
+}
+
+.day-expend {
+  margin-top: auto;
+  text-align: right;
+  color: red;
+}
+
+.calendar-empty {
+  border-radius: 10px;
+  width: 500px;
+  height: 300px;
+  padding: 120px;
+}
+
+.calendar-empty-message {
+  text-align: center;
+  color: $expend;
+  background-color: cyan;
+  font-size: 30px;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 10px;
+  padding: 10px;
+}

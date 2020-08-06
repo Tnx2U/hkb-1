@@ -9,7 +9,7 @@ export default class CalendarView {
 
   set transaction(transaction) {
     this.transactionData = transaction;
-    // console.log('transacitonData : ', this.transactionData);
+    console.log('transacitonData : ', this.transactionData);
     if (this.transactionData.items !== undefined) {
       const dateInfo = this.transactionData.items[0].date;
       [this.year, this.month] = dateInfo.split('-').map((date) => Number(date));
@@ -41,7 +41,7 @@ export default class CalendarView {
         <div class='calendar-date-div' id='date-${dayCount}'>
             <div class='day-number'>${dayCount}</div>
             <div class='day-income' id='day-income-${dayCount}'>${dayIncome ? '+' + dayIncome : ''}</div>
-            <div class='day-expend' id='day-expend-${dayCount}'>${dayIncome ? '-' + dayExpend : ''}</div>
+            <div class='day-expend' id='day-expend-${dayCount}'>${dayExpend ? '-' + dayExpend : ''}</div>
         </div>
       `;
   }
@@ -75,7 +75,7 @@ export default class CalendarView {
     console.log('this.month', this.month);
     if (this.month === null) {
       console.log('access in null month');
-      calendarDom.insertAdjacentHTML('beforeend', this.getEmptyMonthHtmlSrc());
+      this.parentDom.insertAdjacentHTML('beforeend', this.getEmptyMonthHtmlSrc());
     } else {
       const dayList = ['일', '월', '화', '수', '목', '금', '토'];
       const startDate = new Date(this.year, this.month - 1, 1);
