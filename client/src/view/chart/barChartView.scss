@@ -1,0 +1,14 @@
+.barChart {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar-element {
+  display: flex;
+  flex-direction: row;
+}
+
+.bar-element div {
+  min-width: 60px;
+  margin: 5px;
+}
