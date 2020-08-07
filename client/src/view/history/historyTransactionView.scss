@@ -17,6 +17,12 @@
     background-color: $expend;
     padding: 0.6em;
     border-radius: 25px;
+    &-income {
+      background-color: $income;
+    }
+    &-expend {
+      background-color: $expend;
+    }
   }
   &-description {
     flex: 6;
@@ -33,6 +39,14 @@
     @include postfix-KRW;
     text-align: right;
     color: $expend;
+    &-income {
+      @include prefix-positive;
+      color: $income;
+    }
+    &-expend {
+      @include prefix-negative;
+      color: $expend;
+    }
   }
 }
 .tttt {
