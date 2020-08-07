@@ -86,4 +86,28 @@
       border-radius: 22px;
     }
   }
+
+  &-item {
+    @include flex-row;
+    margin: 5px;
+  }
+  &-p {
+    font-size: 20px;
+    color: rgb(91, 133, 194);
+    margin: auto;
+    padding: 3px;
+  }
+
+  &-btn {
+    background-color: #2ea44f;
+    border-color: rgba(27, 31, 35, 0.1);
+    padding: 5px 16px;
+    border-radius: 6px;
+    margin-right: 4px;
+    color: #fff;
+
+    &:disabled {
+      background-color: #94d3a2;
+    }
+  }
 }
