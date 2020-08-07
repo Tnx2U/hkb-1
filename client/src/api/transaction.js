@@ -16,17 +16,8 @@ const getTransaction = function (month) {
   return get(path, params);
 };
 
-const postTransaction = function (paymentId, userId, transactionType, transationDate, category, charge, description) {
+const postTransaction = function (params) {
   const path = `/transactionHistory/`;
-  const params = {
-    paymentId: paymentId,
-    userId: userId,
-    transactionType: transactionType,
-    transationDate: transationDate,
-    category: category,
-    charge: charge,
-    description: description,
-  };
   console.log(params);
   return post(path, params);
 };

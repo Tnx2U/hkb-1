@@ -17,14 +17,20 @@
   }
   &-btn {
     &-type {
-      color: white;
-      background-color: $primary;
-      @include click-background-effect($primary);
+      color: $primary;
+      background-color: white;
+
+      &:hover {
+        background-color: #dddddd;
+      }
+      &:active {
+        background-color: #bbbbbb;
+      }
       font-size: $xsmall;
+      border: 1px solid $primary;
       box-sizing: border-box;
       margin-left: 1em;
-      padding: 0.2em 2em;
-      border: none;
+      padding: 0.3em 2em;
       outline: none;
       border-radius: 5px;
     }
@@ -41,4 +47,10 @@
       border-bottom-right-radius: 10px;
     }
   }
+}
+
+.radio-selected {
+  color: white;
+  background-color: $primary;
+  @include click-background-effect($primary);
 }

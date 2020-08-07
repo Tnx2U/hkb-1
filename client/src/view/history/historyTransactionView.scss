@@ -6,6 +6,7 @@
     border-top: 1px solid #cccccc;
     align-items: center;
     justify-content: space-between;
+    position: relative;
   }
   &-category {
     min-width: 6em;
@@ -33,4 +34,8 @@
     text-align: right;
     color: $expend;
   }
+}
+.tttt {
+  position: relative;
+  right: 0;
 }

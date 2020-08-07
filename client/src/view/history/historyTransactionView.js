@@ -1,11 +1,3 @@
-//     {
-//       type: '지출',
-//       category: '쇼핑/뷰티',
-//       description: '미용실',
-//       payment: '현대카드',
-//       charge: 20000,
-//     },
-
 export default class HistoryTransactionView {
   constructor(parentDom, data, index) {
     this.parentDom = parentDom;

@@ -1,7 +1,6 @@
-import '../share/observable';
 import Observable from '../share/observable';
 
-export default class TransactionModel extends Observable {
+class TransactionModel extends Observable {
   #transaction;
 
   constructor() {
@@ -18,3 +17,5 @@ export default class TransactionModel extends Observable {
     this.notify(this.transaction);
   }
 }
+
+export default new TransactionModel();

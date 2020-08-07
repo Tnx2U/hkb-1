@@ -1,5 +1,6 @@
 import HistoryTransactionView from './historyTransactionView.js';
 
+const DAY = ['일', '월', '화', '수', '목', '금', '토'];
 export default class HistoryItemView {
   constructor(parentDom, data, index) {
     this.parentDom = parentDom;
@@ -14,7 +15,7 @@ export default class HistoryItemView {
         <div class='history-item-header'>
           <div class='history-item-section'>
             <div class='history-item-date'>${this.data.date}</div>
-            <div class='history-item-day'>${this.data.day}</div>
+            <div class='history-item-day'>${DAY[this.data.day]}</div>
           </div>
           <div class='history-item-section'>
             <div class='history-item-income-total'>${this.data.allIncome}</div>
