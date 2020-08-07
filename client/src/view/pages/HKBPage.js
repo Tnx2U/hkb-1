@@ -58,7 +58,7 @@ export default class HKBPage {
       this._payments = payments;
     });
 
-    if (location.pathname !== 'calendar' && location.pathname !== 'graph') {
+    if (location.pathname !== '/calendar' && location.pathname !== '/chart') {
       router.to('history');
     }
 
