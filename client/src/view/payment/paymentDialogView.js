@@ -42,7 +42,6 @@ export default class PaymentDialogView {
     const container = document.querySelector('.payment-list');
     container.innerHTML = '';
     const fragment = document.createDocumentFragment();
-    console.log(payments);
     payments.forEach(({ name, id }) => {
       const p = document.createElement('p');
       p.dataset.id = id;
