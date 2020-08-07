@@ -18,7 +18,6 @@ const getTransaction = function (month) {
 
 const postTransaction = function (params) {
   const path = `/transactionHistory/`;
-  console.log(params);
   return post(path, params);
 };
 

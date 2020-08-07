@@ -44,7 +44,7 @@ function get(path, params) {
 }
 
 function getBaseUri(path) {
-  return `http://localhost:3000${path}`;
+  return `http://13.125.189.204:3000${path}`;
 }
 
 function buildGetUri(path, params) {

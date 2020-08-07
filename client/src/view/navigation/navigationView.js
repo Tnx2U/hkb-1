@@ -70,7 +70,6 @@ export default class NavigationView {
           break;
       }
       if (beforSelected !== this.selected) {
-        console.log('access in selected if');
         this.changeSelectedTab(beforSelected, this.selected);
       }
 

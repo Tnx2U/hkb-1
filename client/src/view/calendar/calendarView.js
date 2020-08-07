@@ -71,9 +71,7 @@ export default class CalendarView {
   renderCalendarDom() {
     const calendarDom = this.parentDom.querySelector(`.${this.rootClassName}`);
 
-    console.log('this.month', this.month);
     if (this.month === null) {
-      console.log('access in null month');
       this.parentDom.insertAdjacentHTML('beforeend', this.getEmptyMonthHtmlSrc());
     } else {
       const dayList = ['일', '월', '화', '수', '목', '금', '토'];
