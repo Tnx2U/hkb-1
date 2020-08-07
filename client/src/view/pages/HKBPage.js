@@ -1,17 +1,19 @@
 import NavigationView from '../navigation/navigationView';
 import HistoryView from '../history/historyView';
 import CalendarView from '../calendar/calendarView.js';
-import TransactionModel from '../../model/transaction/transactionModel';
+import transactionModel from '../../model/transaction/transactionModel';
 import ChartView from '../chart/chartView';
 import BarChartView from '../chart/barChartView';
 import * as api from '../../api/transaction';
 import router from '../../router';
+import paymentModel from '../../model/payment/paymentModel';
 
 export default class HKBPage {
   constructor(parentDom) {
     this.parentDom = parentDom;
     this.rootClassName = 'hkb-page';
-    this.transactionModel = new TransactionModel();
+    this.transactionModel = transactionModel;
+    this.mount();
     this.render();
     this.init();
   }
@@ -30,33 +32,37 @@ export default class HKBPage {
   }
 
   render() {
-    this.mount();
     this.renderNavigation();
   }
 
   async init() {
     addEventListener('locationchange', ({ detail }) => this.handleLocationChange(detail));
     const contentSlot = document.querySelector('.content-slot');
-    const historyView = new HistoryView(contentSlot);
+    this.historyView = new HistoryView(contentSlot);
     const calendarView = new CalendarView(contentSlot);
     const chartView = new ChartView(contentSlot);
     router.routes = [
-      { path: 'history', component: historyView },
+      { path: 'history', component: this.historyView },
       { path: 'calendar', component: calendarView },
       { path: 'chart', component: chartView },
     ];
     this.transactionModel.subscribe((transaction) => {
-      historyView.transaction = transaction;
+      this.historyView.transaction = transaction;
       calendarView.transaction = transaction;
       chartView.transaction = transaction;
       this.renderContent();
+    });
+
+    paymentModel.subscribe((payments) => {
+      this.historyView.payments = payments;
+      this._payments = payments;
     });
 
     if (location.pathname !== 'calendar' && location.pathname !== 'graph') {
       router.to('history');
     }
 
-    const { data } = await (await api.getOrganizeTransaction('06')).json();
+    const { data } = await (await api.getOrganizeTransaction('08')).json();
     this.transactionModel.transaction = data;
   }
 
@@ -66,6 +72,7 @@ export default class HKBPage {
   }
 
   async handleNavChange(month) {
+    this.historyView.month = month;
     const { data } = await (await api.getOrganizeTransaction(month)).json();
     this.transactionModel.transaction = data;
   }

@@ -1,11 +1,3 @@
-//     {
-//       type: '지출',
-//       category: '쇼핑/뷰티',
-//       description: '미용실',
-//       payment: '현대카드',
-//       charge: 20000,
-//     },
-
 export default class HistoryTransactionView {
   constructor(parentDom, data, index) {
     this.parentDom = parentDom;
@@ -18,7 +10,7 @@ export default class HistoryTransactionView {
   getTransactionHtmlSrc() {
     return `
             <div class=${this.rootClassName}>
-                <span class='transaction-category'>
+                <span class='transaction-category ${'transaction-category-' + this.data.type}'>
                     ${this.data.category}
                 </span>
                 <span class='transaction-description'>
@@ -27,7 +19,7 @@ export default class HistoryTransactionView {
                 <span class='transaction-payment'>
                     ${this.data.payment}
                 </span>
-                <span class='transaction-charge'>
+                <span class='transaction-charge ${'transaction-charge-' + this.data.type}'>
                     ${this.data.charge}
                 </span>
             </div>

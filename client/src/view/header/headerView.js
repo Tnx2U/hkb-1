@@ -1,11 +1,11 @@
 import PaymentDialogView from '../payment/paymentDialogView';
-import PaymentModel from '../../model/payment/paymentModel';
+import paymentModel from '../../model/payment/paymentModel';
 import { postPayment, getPayments } from '../../api/payment';
 export default class HeaderView {
   constructor(parentDom) {
     this.parentDom = parentDom;
     this.rootClassName = 'header';
-    this.paymentModel = new PaymentModel();
+    this.paymentModel = paymentModel;
     this.render();
     this.init();
   }

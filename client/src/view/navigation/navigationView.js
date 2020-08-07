@@ -5,7 +5,7 @@ export default class NavigationView {
     this.parentDom = parentDom;
     this.handleChange = handleChange;
     this.rootClassName = 'navigation';
-    this.month = 6;
+    this.month = 8;
     this.selected = 'history';
     this.render();
     this.init();
