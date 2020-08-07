@@ -11,7 +11,16 @@ export default class ChartView {
 
   set transaction(transaction) {
     this.transactionData = transaction;
-    this.orderData = this.setOrderData(this.transactionData);
+    this.orderData = null;
+    if (this.transactionData.length !== 0) this.orderData = this.setOrderData(this.transactionData);
+  }
+
+  getEmptyMonthHtmlSrc() {
+    return `
+        <div class='chart-empty'>
+          <div class='chart-empty-message'>거래 내역이 없는 달입니다!</div>
+        </div>
+    `;
   }
 
   render() {
@@ -37,7 +46,7 @@ export default class ChartView {
     return `
         <div class='chart-total-expend'>
             <div class='chart-expend-explain'>이번 달 총 지출 : </div>
-            <div class='chart-expend-value'>${this.transactionData.allExpend}원</div>
+            <div class='chart-expend-value'>${this.transactionData ? this.transactionData.allExpend : 0}원</div>
         </div>
       `;
   }
@@ -45,9 +54,13 @@ export default class ChartView {
   renderElement() {
     const chartDom = this.parentDom.querySelector(`.${this.rootClassName}`);
     chartDom.innerHTML = '';
-    chartDom.insertAdjacentHTML('beforeend', this.getTotalExpend());
-    new PyChartView(chartDom, this.orderData);
-    new BarChartView(chartDom, this.orderData);
+    if (this.orderData == undefined) {
+      chartDom.insertAdjacentHTML('beforeend', this.getEmptyMonthHtmlSrc());
+    } else {
+      chartDom.insertAdjacentHTML('beforeend', this.getTotalExpend());
+      new PyChartView(chartDom, this.orderData);
+      new BarChartView(chartDom, this.orderData);
+    }
   }
 
   setOrderData(rawData) {
@@ -56,7 +69,7 @@ export default class ChartView {
     rawData.items.forEach((item) => {
       item.transactions.forEach((transaction) => {
         if (transaction.type == '지출') {
-          if (orderDic[transaction.category] == undefined) {
+          if (orderDic[transaction.category] == null) {
             orderDic[transaction.category] = transaction.charge;
           } else {
             orderDic[transaction.category] += transaction.charge;
