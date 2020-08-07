@@ -68,7 +68,7 @@ export default class ChartView {
     let orderDic = {};
     rawData.items.forEach((item) => {
       item.transactions.forEach((transaction) => {
-        if (transaction.type == '지출') {
+        if (transaction.type == 'expend') {
           if (orderDic[transaction.category] == null) {
             orderDic[transaction.category] = transaction.charge;
           } else {

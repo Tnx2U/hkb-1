@@ -28,7 +28,7 @@ export default class HistoryListView {
       <div class='incomeSelector'>
         <input class='incomeSelectorBox' type='checkbox'></input>
         <span> 수입 </span>
-        <span class='incomeSelectorCharge'> ${this.transaction.allExpend || 0}원 </span>
+        <span class='incomeSelectorCharge'> ${this.transaction.allIncome || 0}원 </span>
       </div>
       <div class='expendSelector'>
         <input class='expendSelectorBox' type='checkbox'></input>

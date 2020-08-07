@@ -41,8 +41,8 @@ async function getOrganizeTransactionByMonth(params) {
         organizedTransactions.items.push({
           date: nowDate,
           day: new Date(nowDate).getDay(),
-          allIncome: element.transaction_type == '수입' ? element.charge : 0,
-          allExpend: element.transaction_type == '지출' ? element.charge : 0,
+          allIncome: element.transaction_type === 'income' ? element.charge : 0,
+          allExpend: element.transaction_type === 'expend' ? element.charge : 0,
           transactions: [
             {
               id: element.id,
@@ -101,7 +101,7 @@ async function getOrganizeTransactionByMonth(params) {
     }
 
     //일별, 월별 (수입,지출) 기록
-    if (element.transaction_type == '지출') {
+    if (element.transaction_type == 'expend') {
       dayExpend += element.charge;
       monthExpend += element.charge;
     } else {
