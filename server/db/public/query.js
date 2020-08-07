@@ -48,4 +48,14 @@ const putTransaction = function (params) {
   return putTransactionQueryC;
 };
 
-export { getTransactionByMonth, postTransaction, putTransaction };
+const postPaymentQuery = (params) => {
+  const query = `insert into hkb.payment (user_id,name) values (?,?)`;
+  const formatedQuery = mysql.format(query, [params.userId, params.name]);
+  return formatedQuery;
+};
+
+const getPaymentsQuery = () => {
+  return `select * from payment`;
+};
+
+export { getTransactionByMonth, postTransaction, putTransaction, postPaymentQuery, getPaymentsQuery };

@@ -1,5 +1,5 @@
 function post(path, body) {
-  const uri = getBasicUri(path);
+  const uri = getBaseUri(path);
   return fetch(uri, {
     method: 'POST',
     body: JSON.stringify(body),
@@ -11,7 +11,7 @@ function post(path, body) {
 }
 
 function put(path, body) {
-  const uri = getBasicUri(path);
+  const uri = getBaseUri(path);
   return fetch(uri, {
     method: 'PUT',
     body: JSON.stringify(body),
@@ -23,7 +23,7 @@ function put(path, body) {
 }
 
 function del(path, body) {
-  const uri = getBasicUri(path);
+  const uri = getBaseUri(path);
   return fetch(uri, {
     method: 'DELETE',
     body: JSON.stringify(body),
@@ -43,12 +43,12 @@ function get(path, params) {
   });
 }
 
-function getBasicUri(path) {
+function getBaseUri(path) {
   return `http://localhost:3000${path}`;
 }
 
 function buildGetUri(path, params) {
-  let url = getBasicUri(path);
+  let url = getBaseUri(path);
   let paramURL = `?`;
   Object.keys(params).forEach((key) => (paramURL += `${key}=${params[key]}`));
   return url + paramURL;
