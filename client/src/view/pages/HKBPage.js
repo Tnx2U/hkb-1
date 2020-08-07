@@ -2,6 +2,8 @@ import NavigationView from '../navigation/navigationView';
 import HistoryView from '../history/historyView';
 import CalendarView from '../calendar/calendarView.js';
 import transactionModel from '../../model/transaction/transactionModel';
+import ChartView from '../chart/chartView';
+import BarChartView from '../chart/barChartView';
 import * as api from '../../api/transaction';
 import router from '../../router';
 import paymentModel from '../../model/payment/paymentModel';
@@ -38,13 +40,16 @@ export default class HKBPage {
     const contentSlot = document.querySelector('.content-slot');
     this.historyView = new HistoryView(contentSlot);
     const calendarView = new CalendarView(contentSlot);
+    const chartView = new ChartView(contentSlot);
     router.routes = [
       { path: 'history', component: this.historyView },
       { path: 'calendar', component: calendarView },
+      { path: 'chart', component: chartView },
     ];
     this.transactionModel.subscribe((transaction) => {
       this.historyView.transaction = transaction;
       calendarView.transaction = transaction;
+      chartView.transaction = transaction;
       this.renderContent();
     });
 

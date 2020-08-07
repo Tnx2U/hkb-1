@@ -6,9 +6,15 @@
 .bar-element {
   display: flex;
   flex-direction: row;
+  border-top: solid 1px dodgerblue;
+  border-bottom: solid 1px dodgerblue;
 }
 
 .bar-element div {
-  min-width: 60px;
+  min-width: 100px;
   margin: 5px;
+}
+
+.bar-element-chart {
+  width: 500px;
 }

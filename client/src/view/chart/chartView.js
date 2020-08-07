@@ -1,143 +1,91 @@
-import utils from '../../utils';
-const chart = ` <svg class="chart" viewBox="0 0 400 400"></svg> `;
+import PyChartView from './pyChartView';
+import BarChartView from './barChartView';
 
 export default class ChartView {
   constructor(parentDom) {
     this.parentDom = parentDom;
     this.rootClassName = 'chart';
-    this.dummyData = null;
-    this.year = 2020;
-    this.month = 8;
-    this.setDummyData();
-    this.render();
+    this.orderData = null;
+    // this.render();
+  }
+
+  set transaction(transaction) {
+    this.transactionData = transaction;
+    this.orderData = null;
+    if (this.transactionData.length !== 0) this.orderData = this.setOrderData(this.transactionData);
+  }
+
+  getEmptyMonthHtmlSrc() {
+    return `
+        <div class='chart-empty'>
+          <div class='chart-empty-message'>거래 내역이 없는 달입니다!</div>
+        </div>
+    `;
+  }
+
+  render() {
+    this.mount();
+    this.renderElement();
+  }
+
+  getTemplate() {
+    return `
+      <div class=${this.rootClassName}>
+      </div>`;
+  }
+
+  mount() {
+    this.parentDom.insertAdjacentHTML('beforeend', this.getTemplate());
   }
 
   clear() {
     this.parentDom.innerHTML = '';
   }
 
-  render() {
-    this.clear();
-    this.parentDom.insertAdjacentHTML('beforeend', chart);
-    const chartEl = document.querySelector('.chart');
-    const arr = [
-      { category: '쇼핑', charge: 2000 },
-      { category: '카트', charge: 4000 },
-      { category: '식비', charge: 6000 },
-      { category: '방탈출', charge: 8000 },
-      { category: '데이트', charge: 10000 },
-    ];
-    let total = 0;
-    arr.forEach(({ charge }) => (total += charge));
-    const max = 502.5;
-    let deg = -90;
-    arr.forEach(({ category, charge }) => {
-      const tmp = (charge / total) * max;
-      const circle = utils.createSVGElement({
-        tag: 'circle',
-        attrs: {
-          cx: '200',
-          cy: '200',
-          r: '80',
-          stroke: `#${utils.getRandomHex(0x111111, 0xdddddd)}`,
-          'stroke-width': '160',
-          'stroke-dasharray': '0,1000',
-        },
-        styles: { transform: 'rotate(-90deg)' },
-      });
-      chartEl.appendChild(circle);
-      const deg2 = deg;
-      const tmp2 = tmp;
-      addEventListener('load', () => {
-        chartEl.style.transform = 'rotate(360deg)';
-        circle.style.transform = `rotate(${deg2}deg)`;
-        circle.setAttribute('stroke-dasharray', `${tmp2},1000`);
-      });
-      deg += (charge / total) * 360;
-      circle.addEventListener('mouseover', () => (circle.style.transform += ' scale(1.1)'));
-      circle.addEventListener('mouseout', () => (circle.style.transform = circle.style.transform.split(' ')[0]));
-    });
+  getTotalExpend() {
+    return `
+        <div class='chart-total-expend'>
+            <div class='chart-expend-explain'>이번 달 총 지출 : </div>
+            <div class='chart-expend-value'>${this.transactionData ? this.transactionData.allExpend : 0}원</div>
+        </div>
+      `;
   }
 
-  setDummyData() {
-    this.dummyData = {
-      allExpend: 444790,
-      allIncome: 2750000,
-      items: [
-        {
-          date: '2020-06-16',
-          day: '화',
-          allIncome: 0,
-          allExpend: 26000,
-          transactions: [
-            {
-              type: '지출',
-              category: '쇼핑/뷰티',
-              description: '미용실',
-              payment: '현대카드',
-              charge: 20000,
-            },
-            {
-              type: '지출',
-              category: '식비',
-              description: '맥도날드',
-              payment: '카카오체크카드',
-              charge: 6000,
-            },
-          ],
-        },
-        {
-          date: '2020-06-15',
-          day: '월',
-          allIncome: 2750000,
-          allExpend: 17200,
-          transactions: [
-            {
-              type: '수입',
-              category: '월급',
-              description: '월급',
-              payment: '국민은행',
-              charge: 2750000,
-            },
-            {
-              type: '지출',
-              category: '생활',
-              description: '이마트에서 생필품',
-              payment: '현대카드',
-              charge: 17200,
-            },
-          ],
-        },
-        {
-          date: '2020-06-14',
-          day: '일',
-          allIncome: 0,
-          allExpend: 49500,
-          transactions: [
-            {
-              type: '지출',
-              category: '카페/간식',
-              description: '스타벅스',
-              payment: '카카오체크카드',
-              charge: 6400,
-            },
-            {
-              type: '지출',
-              category: '생활',
-              description: '쿠팡에서 휴지 주문',
-              payment: '현대카드',
-              charge: 19100,
-            },
-            {
-              type: '지출',
-              category: '문화/여가',
-              description: 'CGV',
-              payment: '현대카드',
-              charge: 22000,
-            },
-          ],
-        },
-      ],
-    };
+  renderElement() {
+    const chartDom = this.parentDom.querySelector(`.${this.rootClassName}`);
+    chartDom.innerHTML = '';
+    if (this.orderData == undefined) {
+      chartDom.insertAdjacentHTML('beforeend', this.getEmptyMonthHtmlSrc());
+    } else {
+      chartDom.insertAdjacentHTML('beforeend', this.getTotalExpend());
+      new PyChartView(chartDom, this.orderData);
+      new BarChartView(chartDom, this.orderData);
+    }
+  }
+
+  setOrderData(rawData) {
+    // 1. 2중 foreach 돌면서 dic에 카테고리별로 금액누적
+    let orderDic = {};
+    rawData.items.forEach((item) => {
+      item.transactions.forEach((transaction) => {
+        if (transaction.type == '지출') {
+          if (orderDic[transaction.category] == null) {
+            orderDic[transaction.category] = transaction.charge;
+          } else {
+            orderDic[transaction.category] += transaction.charge;
+          }
+        }
+      });
+    });
+    // 2. dic을 list로 변환하고 금액에 따라 정렬
+    let orderList = [];
+    for (const [key, value] of Object.entries(orderDic)) {
+      orderList.push({ category: key, charge: value, percent: Math.round((value / rawData.allExpend) * 100) });
+    }
+    orderList.sort(function (a, b) {
+      return b.charge - a.charge;
+    });
+
+    return orderList;
   }
 }

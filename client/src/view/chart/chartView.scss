@@ -1,24 +1,35 @@
-.pie {
-  background-color: white;
+.chart-total-expend {
+  margin: 10px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
 }
 
-.chart {
-  width: 50%;
-  height: 50%;
-  background-color: transparent;
-  transition: 1.5s ease-out;
+.chart-expend-explain {
+  color: #808080;
+  font-size: 20px;
 }
 
-path {
-  stroke: none;
+.chart-expend-value {
+  color: darkviolet;
+  font-size: 20px;
 }
 
-circle {
-  fill: none;
-  transform-origin: center;
-  transition: 1s ease-out;
+.chart-empty {
+  border-radius: 10px;
+  width: 500px;
+  height: 300px;
+  margin: auto;
+  margin-top: 270px;
 }
 
-.chart-hover {
-  transform: scale(2);
+.chart-empty-message {
+  text-align: center;
+  color: $expend;
+  background-color: cyan;
+  font-size: 30px;
+  margin-top: 100px;
+  margin-bottom: auto;
+  border-radius: 10px;
+  padding: 10px;
 }

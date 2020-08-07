@@ -34,6 +34,11 @@ export default class NavigationView {
     this.parentDom.insertAdjacentHTML('beforeend', this.getTemplate());
   }
 
+  changeSelectedTab(before, now) {
+    this.parentDom.querySelector(`.content-btn-${before}`).classList.toggle('selected');
+    this.parentDom.querySelector(`.content-btn-${now}`).classList.toggle('selected');
+  }
+
   init() {
     const root = document.querySelector(`.${this.rootClassName}`);
     root.addEventListener('click', (e) => {
@@ -41,6 +46,7 @@ export default class NavigationView {
       const className = e.target.className.split(' ')[0];
 
       let changed = false;
+      let beforSelected = this.selected;
       switch (className) {
         case 'month-btn-left':
           if (--this.month <= 0) this.month = 12;
@@ -63,6 +69,11 @@ export default class NavigationView {
           this.selected = 'chart';
           break;
       }
+      if (beforSelected !== this.selected) {
+        console.log('access in selected if');
+        this.changeSelectedTab(beforSelected, this.selected);
+      }
+
       if (changed) {
         document.querySelector('.month-text').innerHTML = this.month;
         const month = (this.month < 10 ? '0' : '') + this.month;

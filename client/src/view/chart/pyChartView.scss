@@ -1,0 +1,24 @@
+.pie {
+  background-color: white;
+}
+
+.chart {
+  width: 30%;
+  height: 30%;
+  background-color: transparent;
+  transition: 1.5s ease-out;
+}
+
+path {
+  stroke: none;
+}
+
+circle {
+  fill: none;
+  transform-origin: center;
+  transition: 1s ease-out;
+}
+
+.chart-hover {
+  transform: scale(2);
+}

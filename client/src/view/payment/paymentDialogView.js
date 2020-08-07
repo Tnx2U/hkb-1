@@ -42,10 +42,25 @@ export default class PaymentDialogView {
     const container = document.querySelector('.payment-list');
     container.innerHTML = '';
     const fragment = document.createDocumentFragment();
-    payments.forEach(({ name }) => {
+    console.log(payments);
+    payments.forEach(({ name, id }) => {
       const p = document.createElement('p');
+      p.dataset.id = id;
+      p.className = 'payment-p';
       p.textContent = name;
-      fragment.appendChild(p);
+
+      const button = document.createElement('button');
+      button.dataset.id = id;
+      button.className = 'payment-btn';
+      button.textContent = '삭제';
+
+      const div = document.createElement('div');
+      div.dataset.id = id;
+      div.className = 'payment-item';
+
+      div.appendChild(p);
+      div.appendChild(button);
+      fragment.appendChild(div);
     });
     container.appendChild(fragment);
   }
