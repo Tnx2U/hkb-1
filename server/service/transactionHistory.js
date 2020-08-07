@@ -101,7 +101,7 @@ async function getOrganizeTransactionByMonth(params) {
     }
 
     //일별, 월별 (수입,지출) 기록
-    if (element.transaction_type == 'expend') {
+    if (element.transaction_type === 'expend') {
       dayExpend += element.charge;
       monthExpend += element.charge;
     } else {

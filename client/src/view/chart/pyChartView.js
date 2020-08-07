@@ -24,13 +24,6 @@ export default class PyChartView {
       chartDataArr.push({ category: item.category, charge: item.charge });
     }
 
-    // const arr = [
-    //   { category: '쇼핑', charge: 2000 },
-    //   { category: '카트', charge: 4000 },
-    //   { category: '식비', charge: 6000 },
-    //   { category: '방탈출', charge: 8000 },
-    //   { category: '데이트', charge: 10000 },
-    // ];
     let total = 0;
     chartDataArr.forEach(({ charge }) => (total += charge));
     const max = 502.5;
